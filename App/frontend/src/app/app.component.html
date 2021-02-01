@@ -1,0 +1,46 @@
+<div class="app-container">
+  <mat-toolbar color="primary">
+    <button mat-icon-button (click)="sidenav.toggle()"><mat-icon>menu</mat-icon></button>
+    <button mat-button (click)="this.router.navigate([''])">Home</button>
+    <button mat-button *ngIf="currentUser">{{currentUser.username}}</button>
+    <button mat-button (click)="this.router.navigate(['login'])" *ngIf="!currentUser">Log in</button>
+    <button mat-icon-button [matMenuTriggerFor]="messagePanel"><mat-icon matBadge="{{this.notReaded}}" matBadgeColor="warn">mail</mat-icon></button>
+    <button mat-icon-button><mat-icon>settings</mat-icon></button>
+    <button mat-icon-button (click)="logout()" *ngIf="currentUser"><mat-icon>exit_to_app</mat-icon></button>
+  </mat-toolbar>
+
+  <mat-menu #messagePanel="matMenu">
+      <button mat-menu-item *ngFor="let message of this.messages" [disabled]="message.readed" (click)="readMessage(message)">
+        {{message.text}}
+      </button>
+  </mat-menu>
+
+  <mat-sidenav-container>
+    <mat-sidenav #sidenav (mouseleave)="sidenav.close()">
+      <mat-nav-list>
+        <mat-list-item (click)="this.router.navigate(['gardens'])"><mat-icon mat-list-icon>spa</mat-icon><span>Gardens</span><mat-icon>keyboard_arrow_right</mat-icon></mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item (click)="this.router.navigate(['maps'])"><mat-icon mat-list-icon>place</mat-icon><span>Maps</span><mat-icon>keyboard_arrow_right</mat-icon></mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item><mat-icon mat-list-icon>router</mat-icon><span>Sensors</span><mat-icon>keyboard_arrow_right</mat-icon></mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item (click)="this.router.navigate(['analytics'])"><mat-icon mat-list-icon>assessment</mat-icon><span>Analytics</span><mat-icon>keyboard_arrow_right</mat-icon></mat-list-item>
+        <mat-divider></mat-divider>
+      </mat-nav-list>
+    </mat-sidenav>
+    
+    <mat-sidenav-content>
+      <router-outlet></router-outlet>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+  <div *ngFor="let alert of this.alerts">
+    <alert [type]="alert.type" [dismissOnTimeout]="2000">{{alert.message}}</alert>
+  </div>
+</div>
+
+
+
+
+
+
+

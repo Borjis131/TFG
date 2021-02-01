@@ -1,0 +1,16 @@
+@import '~@angular/material/theming';
+@include mat-core();
+
+$frontend-primary: mat-palette($mat-teal);
+$frontend-accent:  mat-palette($mat-pink, A200, A100, A400);
+$frontend-warn:    mat-palette($mat-red);
+$frontend-background-color: map_get($mat-blue-grey, 50);
+
+$frontend-theme: mat-light-theme($frontend-primary, $frontend-accent, $frontend-warn);
+
+// Insert custom background color
+$background: map-get($frontend-theme, background);
+$background: map_merge($background, (background: $frontend-background-color));
+$frontend-theme: map_merge($frontend-theme, (background: $background));
+
+@include angular-material-theme($frontend-theme);

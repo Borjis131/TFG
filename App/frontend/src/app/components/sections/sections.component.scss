@@ -1,0 +1,76 @@
+@import '~@angular/material/theming';
+
+.component-container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.mat-card {
+    flex: 1 1 30%;
+    justify-content: center;
+    max-width: 20%;
+    max-height: 20%;
+    margin: 2.2rem;
+
+    &:hover{
+        cursor: pointer;
+        @include mat-elevation(8);
+    }
+}
+
+.mat-card-title, .mat-card-subtitle {
+    white-space: nowrap; 
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.mat-card-content {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin: 1rem;
+}
+
+.mat-icon-button {
+    display: flex;
+    margin-left: auto;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+}
+
+h2 {
+    text-align: center;
+    margin-top: 1rem;
+    margin-bottom: 0;
+}
+
+.mat-progress-spinner {
+    position: relative;
+    left: 50%;
+    top: 50%;
+}
+
+.mat-form-field {
+    margin-left: 0.5rem;
+}
+
+.mat-raised-button {
+    background-color: mat-color($mat-teal, 600);
+    color: white;
+    margin-left: 1rem;
+}
+
+.breadcrumbs {
+    display: flex;
+    margin-left: 1rem;
+}
+
+span {
+    display: flex;
+    &:hover{
+        cursor: pointer;
+    }
+}
+

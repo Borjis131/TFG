@@ -1,0 +1,98 @@
+<mat-progress-spinner *ngIf="inProgress" mode="indeterminate"></mat-progress-spinner>
+<div *ngIf="!inProgress">
+  <h2>{{sensor}}</h2>
+  <div class="breadcrumbs">
+      <span class="crumb" (click)="this.router.navigate(['/gardens']);">Gardens<i><mat-icon>keyboard_arrow_right</mat-icon></i></span><span class="crumb" (click)="this.router.navigate(['/section/'+this.section]);">Section<i><mat-icon>keyboard_arrow_right</mat-icon></i></span><span class="crumb" (click)="this.location.back();">Sensor<i><mat-icon>keyboard_arrow_right</mat-icon></i></span>
+    </div>
+  <div class="component-container">
+    <div class="table">
+      <div>
+        <table mat-table [dataSource]="measures">
+          <ng-container matColumnDef="temperature">
+            <th mat-header-cell *matHeaderCellDef> Temperature </th>
+            <td mat-cell *matCellDef="let measure"> {{measure.temperature}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="air_humidity">
+            <th mat-header-cell *matHeaderCellDef> Air humidity </th>
+            <td mat-cell *matCellDef="let measure"> {{measure.air_humidity}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="soil_humidity">
+            <th mat-header-cell *matHeaderCellDef> Soil humidity </th>
+            <td mat-cell *matCellDef="let measure"> {{measure.soil_humidity}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="light_intensity">
+            <th mat-header-cell *matHeaderCellDef> Light intensity </th>
+            <td mat-cell *matCellDef="let measure"> {{measure.light_intensity}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="water_level">
+            <th mat-header-cell *matHeaderCellDef> Water level </th>
+            <td mat-cell *matCellDef="let measure"> {{measure.water_level}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="light_switch">
+            <th mat-header-cell *matHeaderCellDef> Light switch </th>
+            <td mat-cell *matCellDef="let measure"> {{measure.light_switch}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="pump">
+            <th mat-header-cell *matHeaderCellDef> Pump </th>
+            <td mat-cell *matCellDef="let measure"> {{measure.pump}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="time">
+            <th mat-header-cell *matHeaderCellDef> Time </th>
+            <td mat-cell *matCellDef="let measure"> {{measure.timestamp}} </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+        </table>
+      </div>
+      <div>
+        <mat-paginator [length]="this.totalPages" [pageSize]="this.pageSize" (page)="pageChanged($event)"></mat-paginator>
+      </div>
+    </div>
+    <div>
+      <span>Last measure: </span>
+      <span>{{lastMeasure.timestamp}}</span>
+      <div class="charts">
+        <ngx-charts-linear-gauge class="rotate270" [view]="view" [scheme]="linearGaugeColor" [value]="linearGaugeResults" [min]="-20" [max]="50" [units]="''"></ngx-charts-linear-gauge>
+        <ngx-charts-pie-grid [view]="view" [scheme]="color" [results]="pieResults" [designatedTotal]="100"></ngx-charts-pie-grid>
+        <div class="icon">
+          <mat-icon class="rotate180">highlight</mat-icon>
+          <p>{{lastMeasure.light_switch}}</p>
+        </div>
+        <div class="icon">
+          <mat-icon>invert_colors</mat-icon>
+          <p>{{lastMeasure.pump}}</p>
+        </div>
+      </div>
+      <div class="charts">
+        <ngx-charts-heat-map [view]="view" [scheme]="heatMapColor" [min]="0" [max]="100" [results]="heatMapResults" [showXAxisLabel]="true" [xAxis]="'Soil humidity'"></ngx-charts-heat-map>
+        <ngx-charts-bar-vertical [view]="barVerticalView" [scheme]="colors" [results]="barVerticalResults" [showDataLabel]="true"></ngx-charts-bar-vertical>
+      </div>
+    </div>
+  </div>
+  <div class="control-panel">
+    <div>
+      <span>Water pump</span><button mat-icon-button (click)="this.waterPump=!this.waterPump;"><mat-icon *ngIf="this.waterPump">check_box</mat-icon><mat-icon *ngIf="!this.waterPump">check_box_outline_blank</mat-icon></button>
+      <span>Light switch</span><button mat-icon-button (click)="this.lightSwitch=!this.lightSwitch;"><mat-icon *ngIf="this.lightSwitch">check_box</mat-icon><mat-icon *ngIf="!this.lightSwitch">check_box_outline_blank</mat-icon></button>
+      <button mat-raised-button (click)="activateServices(this.section+'+', this.sensor)">Activate service</button>
+    </div>
+    <div>
+      <div *ngIf="this.realtimeMeasure">
+        <p>Temperature: {{this.realtimeMeasure.temperature}}, Air humidity: {{this.realtimeMeasure.air_humidity}}, 
+          Soil humidity: {{this.realtimeMeasure.soil_humidity}}, Light intensity: {{this.realtimeMeasure.light_intensity}}, 
+          Water level: {{this.realtimeMeasure.water_level}}, Water pump: {{this.realtimeMeasure.pump}}, Light swith: {{this.realtimeMeasure.light_switch}}
+        </p>
+      </div>
+      <button mat-raised-button (click)="requestMeasure(this.section+'+', this.sensor)">Request data</button>
+    </div>
+  </div>
+</div>
+

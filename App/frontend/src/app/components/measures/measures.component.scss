@@ -1,0 +1,93 @@
+@import '~@angular/material/theming';
+
+.component-container {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+h2 {
+    text-align: center;
+    margin-top: 1rem;
+    margin-bottom: 0;
+}
+
+.table {
+    margin: 1rem;
+    width: 55%;
+}
+
+table {
+    width: 100%;
+}
+
+th {
+    text-align: center !important;
+    background-color: mat-color($mat-teal, 400);
+    color: mat-color($mat-grey, 100);
+}
+
+td {
+    text-align: center !important;
+}
+
+.charts {
+    display: flex;
+    flex: 1, 1, 100%;
+    justify-content: flex-start;
+    flex-flow: row, wrap;
+}
+
+.icon {
+    flex: 1, 1, 4rem;
+    max-height: 4rem;
+    margin: 1rem;
+    margin-top: 3.2rem;
+    text-align: center;
+}
+
+.rotate180 {
+    transform: rotate(180deg);
+}
+
+.rotate270 {
+    transform: rotate(270deg);
+}
+
+/deep/ .ngx-charts {
+    .value {
+        transform: rotate(90deg);
+    }
+}
+
+.mat-progress-spinner {
+    position: relative;
+    left: 50%;
+    top: 50%;
+}
+
+button:focus {
+    outline: none;
+}
+
+.control-panel {
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    margin-left: 2rem;
+    margin-top: 1rem;
+}
+
+.breadcrumbs {
+    display: flex;
+    margin-left: 1rem;
+}
+
+.crumb {
+    display: flex;
+    &:hover{
+        cursor: pointer;
+    }
+}

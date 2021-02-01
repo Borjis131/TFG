@@ -1,0 +1,50 @@
+<mat-progress-spinner *ngIf="inProgress" mode="indeterminate"></mat-progress-spinner>
+<div *ngIf="!inProgress">
+  <ng-template #template>
+    <div class="modal-body text-center">
+      <p>Do you want to delete the sensor?</p>
+        <button mat-raised-button class="normalButton" (click)="confirmDeletion()">Yes</button>
+        <button mat-raised-button class="normalButton" (click)="cancelDeletion()">No</button>
+    </div>
+  </ng-template>
+  <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title><h6>Create Sensor</h6></mat-panel-title>
+      </mat-expansion-panel-header>
+      <form [formGroup]="sensorsForm" (ngSubmit)="createSensor(sensorsForm.value.name, sensorsForm.value.location, this.section.id)">
+        <mat-form-field>
+          <input matInput type="text" placeholder="name" formControlName="name" required>
+        </mat-form-field>
+        <mat-form-field>
+          <textarea matInput type="text" placeholder="location" formControlName="location" required></textarea>
+        </mat-form-field>
+        <button mat-raised-button class="normalButton" [disabled]="!sensorsForm.valid">Create</button>
+      </form>
+  </mat-expansion-panel>
+  <h2>{{this.section.name}}</h2>
+  <div class="breadcrumbs">
+    <span (click)="this.router.navigate(['/gardens']);">Gardens<i><mat-icon>keyboard_arrow_right</mat-icon></i></span><span (click)="this.location.back();">Section<i><mat-icon>keyboard_arrow_right</mat-icon></i></span>
+  </div>
+  <div class="video-container">
+    <video [hidden]="!video" id="remoteVideo" autoplay playsinline></video>
+    <button mat-raised-button (click)="showVideo()">Watch section<mat-icon *ngIf="video">keyboard_arrow_up</mat-icon><mat-icon *ngIf="!video">keyboard_arrow_down</mat-icon></button>
+  </div>
+  <div class="component-container">
+    <mat-card *ngFor="let sensor of sensors">
+      <mat-card-actions><button mat-icon-button><mat-icon>edit</mat-icon></button><button mat-icon-button (click)="modalDeleteSensor(template, sensor.id)"><mat-icon>delete</mat-icon></button></mat-card-actions>
+      <div class="card-header">
+        <mat-card-content>{{sensor.location}}</mat-card-content>
+      </div>
+      <div (click)="getSensor(sensor.id)">
+      <div mat-card-avatar class="avatar-image"></div>
+        <mat-card-header>
+          <mat-card-title><span>{{sensor.name}}</span></mat-card-title>
+          <mat-card-subtitle><span>Sensor</span></mat-card-subtitle>
+        </mat-card-header>
+      </div>
+    </mat-card>
+  </div>
+</div>
+<div class="pagination">
+  <pagination [totalItems]="totalItems" [itemsPerPage]="itemsPerPage" (pageChanged)="pageChanged($event)"></pagination>
+</div>

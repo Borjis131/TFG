@@ -1,0 +1,35 @@
+<mat-progress-spinner *ngIf="inProgress" mode="indeterminate"></mat-progress-spinner>
+<div *ngIf="!inProgress">
+    <mat-expansion-panel>
+        <mat-expansion-panel-header>
+            <mat-panel-title><h6>Create Garden</h6></mat-panel-title>
+        </mat-expansion-panel-header>
+        <form [formGroup]="gardensForm" (ngSubmit)="createGarden(gardensForm.value.name, gardensForm.value.description, gardensForm.value.latitude, gardensForm.value.longitude)">
+            <mat-form-field>
+                <input matInput type="text" placeholder="name" formControlName="name" required>
+            </mat-form-field>
+            <mat-form-field>
+                <input matInput type="text" placeholder="description" formControlName="description" required>
+            </mat-form-field>
+            <mat-form-field>
+                <input matInput type="text" placeholder="latitude" formControlName="latitude" required>
+            </mat-form-field>
+            <mat-form-field>
+                <input matInput type="text" placeholder="longitude" formControlName="longitude" required>
+            </mat-form-field>
+            <button mat-raised-button [disabled]="!gardensForm.valid">Create</button>
+        </form>
+    </mat-expansion-panel>
+    <div class="component-container">
+        <mat-card *ngFor="let garden of gardens" (click)="getGarden(garden.id)">
+            <mat-card-title>{{garden.name}}</mat-card-title>
+            <mat-card-subtitle>Garden</mat-card-subtitle>
+            <img mat-card-image src={{garden.img}}/>
+            <mat-card-content>Description: {{garden.description}}</mat-card-content>
+            <mat-card-actions><button mat-icon-button><mat-icon>launch</mat-icon></button></mat-card-actions>
+        </mat-card>
+    </div>
+</div>
+<div class="pagination">
+    <pagination [totalItems]="totalItems" [itemsPerPage]="itemsPerPage" (pageChanged)="pageChanged($event)"></pagination>
+</div>

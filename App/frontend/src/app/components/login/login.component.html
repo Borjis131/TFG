@@ -1,0 +1,48 @@
+<div class="component-container">
+  <mat-tab-group>
+    <mat-tab label="Login">
+      <div class="form-container">
+        <form [formGroup]="loginForm" (ngSubmit)="login(loginForm.value.username, loginForm.value.password)">
+
+          <mat-form-field>
+            <input matInput type="text" placeholder="username" formControlName="username" required>
+          </mat-form-field>
+                
+          <mat-form-field>
+            <input matInput type="password" placeholder="password" formControlName="password" required>
+          </mat-form-field>
+
+          <div class="div-button">
+            <button mat-raised-button [disabled]="!loginForm.valid">Login</button>
+          </div>    
+        </form>
+      </div>
+    </mat-tab>
+    <mat-tab label="Register">
+      <div class="form-container">
+        <form [formGroup]="registerForm" (ngSubmit)="register(registerForm.value.username, registerForm.value.email, registerForm.value.password1)">
+
+          <mat-form-field>
+            <input matInput type="text" placeholder="username" formControlName="username" required>
+          </mat-form-field>
+
+          <mat-form-field>
+            <input matInput type="email" placeholder="email" formControlName="email" required>
+          </mat-form-field>
+
+          <mat-form-field>
+            <input matInput type="password" placeholder="password" formControlName="password1" required>
+          </mat-form-field>
+
+          <mat-form-field>
+            <input matInput type="password" placeholder="repeat password" formControlName="password2" required>
+          </mat-form-field>
+
+          <div class="div-button">
+            <button mat-raised-button [disabled]="!(registerForm.valid && registerForm.value.password1 === registerForm.value.password2)">Register</button>
+          </div> 
+        </form>
+      </div>
+    </mat-tab>
+  </mat-tab-group>
+</div>

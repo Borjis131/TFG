@@ -1,0 +1,7 @@
+<agm-map [latitude]="lat" [longitude]="lng">
+  <agm-marker *ngFor="let garden of gardens" [latitude]="garden.latitude" [longitude]="garden.longitude">
+    <agm-info-window [disableAutoPan]="true">
+      <span>{{garden.name}}<button mat-icon-button><mat-icon class="little-icon" (click)="navigateTo(garden.id)">near_me</mat-icon></button></span>
+    </agm-info-window>
+  </agm-marker>
+</agm-map>

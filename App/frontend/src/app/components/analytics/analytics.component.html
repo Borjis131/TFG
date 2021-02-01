@@ -1,0 +1,35 @@
+ <div class="component-container">
+  <div class="sensor" *ngFor="let sensor of this.measures; index as i" (click)="getSensor(sensor.id)">
+    <h5>{{sensor.sensor}}</h5>
+    <div class="chart-container">
+      <div class="charts">
+        <h6>{{temperatureResults[i][0].name}}</h6>
+        <ngx-charts-line-chart [results]="temperatureResults[i]" [xAxis]="false" [yAxis]="true" [autoScale]="true" [scheme]="temperatureColor"></ngx-charts-line-chart>      
+      </div>
+      <div class="charts">
+        <h6>{{soilHumidityResults[i][0].name}}</h6>
+        <ngx-charts-line-chart [results]="soilHumidityResults[i]" [xAxis]="false" [yAxis]="true" [autoScale]="true" [scheme]="soilHumidityColor"></ngx-charts-line-chart>
+      </div>
+      <div class="charts">
+        <h6>{{lightIntensityResults[i][0].name}}</h6>
+        <ngx-charts-line-chart [results]="lightIntensityResults[i]" [xAxis]="false" [yAxis]="true" [autoScale]="true" [scheme]="lightIntensityColor"></ngx-charts-line-chart>
+      </div>
+      <div class="charts">
+        <h6>{{waterLevelResults[i][0].name}}</h6>
+        <ngx-charts-area-chart [results]="waterLevelResults[i]" [xAxis]="false" [yAxis]="true" [autoScale]="true" [scheme]="waterLevelColor"></ngx-charts-area-chart>
+      </div>
+      <div class="charts">
+        <h6>{{lightSwitchResults[i][0].name}}</h6>
+        <ngx-charts-line-chart [results]="lightSwitchResults[i]" [xAxis]="false" [yAxis]="true" [autoScale]="true" [scheme]="lightSwitchColor"></ngx-charts-line-chart>
+      </div>
+      <div class="charts">
+        <h6>{{pumpResults[i][0].name}}</h6>
+          <ngx-charts-line-chart [results]="pumpResults[i]" [xAxis]="false" [yAxis]="true" [autoScale]="true" [scheme]="pumpColor"></ngx-charts-line-chart>
+      </div>
+      <div class="charts">
+        <h6>{{airHumidityResults[i][0].name}}</h6>
+        <ngx-charts-line-chart [results]="airHumidityResults[i]" [xAxis]="false" [yAxis]="true" [autoScale]="true" [scheme]="airHumidityColor"></ngx-charts-line-chart>
+      </div>
+    </div>
+  </div>
+</div> 

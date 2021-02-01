@@ -1,0 +1,39 @@
+.mat-button {
+    display: flex;
+}
+
+.mat-button:nth-child(3) {
+    margin-left: auto;
+}
+
+.span {
+    display: flex;
+    margin-left: auto;
+}
+
+.mat-toolbar {
+    box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.6);
+    position: relative;
+    z-index: 2;
+    min-height: 4rem;
+}
+
+.mat-sidenav {
+    height: 100%;
+    width: 25%;
+}
+
+.mat-sidenav-container {
+    position: relative;
+}
+
+span {
+    white-space: nowrap; 
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-left: 1rem;
+}
+
+button:focus {
+    outline: none;
+}

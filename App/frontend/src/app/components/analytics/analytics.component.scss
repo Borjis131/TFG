@@ -1,0 +1,33 @@
+.component-container {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: center;
+}
+.sensor {
+    margin: 1rem;
+    border-radius: 5px;
+    flex: 0 1 40%;
+    background-color: rgba(21, 86, 82, 0.1);
+}
+.chart-container {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.charts {
+    margin: 1rem;
+    width: 40%;
+    height: 20%;
+}
+
+h5 {
+    margin: 1rem;
+    text-align: center;
+}
+
+h6 {
+    text-align: center;
+}

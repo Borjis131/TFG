@@ -1,0 +1,126 @@
+@import '~@angular/material/theming';
+
+.component-container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.card-header {
+    background-color: mat-color($mat-blue-grey, 50);
+}
+
+.mat-card-actions {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.mat-icon-button {
+    display: flex;
+    max-width: 2rem;
+    max-height: 1rem;
+    margin-top: -1rem;
+    margin-bottom: 0.9rem;
+}
+
+.mat-icon {
+    font-size: 1.2rem;
+}
+
+.avatar-image {
+    background-image: url('https://media.istockphoto.com/photos/young-seedling-growing-out-of-soil-over-a-white-background-picture-id145922846?k=6&m=145922846&s=612x612&w=0&h=ktZlg2G5EEQHJUCzZSJbRhc2f2-cBd61wZ_wGRAtmc8=');
+    background-size: cover;
+    background-position: center;
+    margin: auto;
+    border-style: solid;
+    border-width: 1px;
+    margin-top: -1.2rem;
+    width: 3.2rem;
+    height: 3.2rem;
+}
+
+.mat-card {
+    flex: 1 1 30%;
+    justify-content: center;
+    max-width: 20%;
+    max-height: 20%;
+    margin: 2.2rem;
+
+    &:hover{
+        cursor: pointer;
+        @include mat-elevation(8);
+    }
+}
+
+.mat-card-header {
+    white-space: nowrap; 
+    overflow: hidden;
+    text-overflow: ellipsis;
+    justify-content: center;
+    margin-top: 1rem;
+}
+
+span {
+    display: flex;
+    justify-content: center;
+    &:hover{
+        cursor: pointer;
+    }
+}
+
+.mat-card-content {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin: 1rem;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+}
+
+h2 {
+    text-align: center;
+    margin-top: 1rem;
+    margin-bottom: 0;
+}
+
+.video-container {
+    display: flex;
+}
+
+.mat-raised-button {
+    margin-left: auto;
+    margin-right: 4rem;
+    max-height: 2.3rem;
+}
+
+.mat-progress-spinner {
+    position: relative;
+    left: 50%;
+    top: 50%;
+}
+
+video {
+    max-width: 100%;
+    width: 320px;
+    margin: auto;
+}
+
+button:focus {
+    outline: none;
+}
+
+.mat-form-field {
+    margin-left: 0.5rem;
+}
+
+.normalButton {
+    background-color: mat-color($mat-teal, 600);
+    color: white;
+    margin-left: 1rem;
+}
+
+.breadcrumbs {
+    display: flex;
+    margin-left: 1rem;
+}
